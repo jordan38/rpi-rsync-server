@@ -1,0 +1,31 @@
+#!/usr/bin/bash
+
+# Insert credentials
+echo "$LOGIN:$PASSWORD" > /etc/rsyncd.secrets
+
+# Insert configuration Rsync
+[ -f /etc/rsyncd.conf ] || cat <<EOF > /etc/rsyncd.conf
+
+
+    log file = /var/log/rsycnd.log
+
+    timeout = 300
+    max connections = 10
+
+    [$NOM]
+        uid = rsync
+        gid = rsync
+        path = /media/rsync
+        read only = false
+        comment = data directory
+        secrets file = /etc/rsyncd.secrets
+
+EOF
+
+# Replace configuration value by default
+sed "s/RSYNC_ENABLE=false/RSYNC_ENABLE=true/g" /etc/default/rsync
+sed "s/RSYNC_ENABLE=false/RSYNC_CONFIG_FILE=/etc/rsyncd.conf/g" /etc/default/rsync
+
+# Start Rsync
+rsync --daemon
+
