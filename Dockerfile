@@ -1,4 +1,4 @@
-FROM hypriot/rpi-alpine:3.7
+FROM hypriot/rpi-alpine:3.6
 MAINTAINER Jordan Content
 
 RUN apk add --no-cache rsync openssh-client
