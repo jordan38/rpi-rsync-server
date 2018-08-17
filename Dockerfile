@@ -9,6 +9,8 @@ VOLUME /media/rsync
 
 COPY run /usr/local/bin/run
 
+RUN chmod +x /usr/local/bin/run
+
 EXPOSE 873
 
 ENTRYPOINT ["/usr/local/bin/run"]

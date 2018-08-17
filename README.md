@@ -7,10 +7,22 @@
                   --port 873:873
                   --env NAME=NAS_BACKUP \
                   --env LOGIN=login \
-                  --volume <path to data>:/media/rsync \
                   --env PASSWORD=password \
+                  --volume <path to data>:/media/rsync \
                   --restart unless-stopped \
-                  jcontent/rpi-rsync-server
+                  rpi-rsync-server
+     
+     $ docker      run  \
+                   --name rsync-server \
+                   -p 873:873
+                   --env NAME=NAS_BACKUP \
+                   --env LOGIN=login \
+                   --env PASSWORD=password \
+                   --volume /usr/bin/qemu-arm-static:/usr/bin/qemu-arm-static
+                   --volume <path to data>:/media/rsync \
+                   --restart unless-stopped \
+                   rpi-rsync-server
+      
 
 ## Customising
 

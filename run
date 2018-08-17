@@ -27,5 +27,5 @@ sed "s/RSYNC_ENABLE=false/RSYNC_ENABLE=true/g" /etc/default/rsync
 sed "s/RSYNC_ENABLE=false/RSYNC_CONFIG_FILE=/etc/rsyncd.conf/g" /etc/default/rsync
 
 # Start Rsync
-rsync --daemon
+# rsync --daemon
 
