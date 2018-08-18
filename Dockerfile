@@ -3,11 +3,11 @@ MAINTAINER Jordan Content
 
 RUN apk add --no-cache rsync openssh-client
 
-RUN mkdir -p /mnt/rsync
-COPY run /usr/local/bin/run
-
+WORKDIR /usr/local/bin
+COPY run .
 RUN chmod +x /usr/local/bin/run
 
+RUN mkdir -p /mnt/rsync
 VOLUME /mnt/rsync
 
 EXPOSE 873
