@@ -1,15 +1,13 @@
-FROM hypriot/rpi-alpine:3.6
+FROM hypriot/rpi-alpine:latest
 MAINTAINER Jordan Content
 
-RUN apk add --no-cache rsync openssh-client
+RUN apk add --no-cache rsync tzdata
 
-WORKDIR /usr/local/bin
-COPY run .
-RUN chmod +x /usr/local/bin/run
+COPY docker-entrypoint.sh /
 
-RUN mkdir -p /mnt/rsync
-VOLUME /mnt/rsync
+RUN chmod +x /docker-entrypoint.sh
 
 EXPOSE 873
+ENTRYPOINT ["/usr/bin/docker-entrypoint.sh"]
 
-ENTRYPOINT ["/usr/local/bin/run"]
+CMD [ "/usr/bin/rsync", "--daemon", "--log-file=/dev/stdout" ]
