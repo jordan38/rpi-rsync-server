@@ -7,3 +7,14 @@ docker/docker
 .*.swp
 a.out
 *.orig
+Supprimerait .idea/codeStyles/
+Supprimerait .idea/compiler.xml
+Supprimerait .idea/encodings.xml
+Supprimerait .idea/inspectionProfiles/
+Supprimerait .idea/misc.xml
+Supprimerait .idea/modules.xml
+Supprimerait .idea/phpRuntime.xml
+Supprimerait .idea/rpi-rsync-server.iml
+Supprimerait .idea/sonarlint/
+Supprimerait .idea/workspace.xml
+Supprimerait .idea/vcs.xml
