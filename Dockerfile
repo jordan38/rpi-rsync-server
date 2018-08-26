@@ -21,5 +21,3 @@ RUN touch rsync.log
 
 EXPOSE 873
 ENTRYPOINT ["/docker-entrypoint.sh"]
-
-CMD sh
