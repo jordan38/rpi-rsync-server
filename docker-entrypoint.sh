@@ -7,4 +7,8 @@ set -e
 
 printf "$LOGIN:$PASSWORD" > /etc/rsyncd.secrets
 
-exec "$@"
+ln -sf /dev/stdout /var/log/rsync/rsync.log
+
+rsync --no-detach --daemon --config=/etc/rsyncd.conf --log-file=/var/log/rsync/rsync.log
+
+#exec "$@"

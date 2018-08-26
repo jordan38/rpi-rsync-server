@@ -14,3 +14,6 @@
     $ docker exec -it rsync-server sh
     
     $ docker logs -f rsync-server
+    
+    # rsync -rdt rsync://172.17.0.2:873/
+

@@ -9,11 +9,17 @@ COPY rsyncd.conf /etc/rsyncd.conf
 
 RUN chmod +x /docker-entrypoint.sh
 
-RUN mkdir -p /rsync/data
+RUN mkdir -p /rsync/backup/data
+
+RUN touch /etc/rsyncd.secrets \
+    chmod 600 /etc/rsyncd.secrets
+
+RUN mkdir -p /var/log/rsync
+
+WORKDIR /var/log/rsync
+RUN touch rsync.log
 
 EXPOSE 873
 ENTRYPOINT ["/docker-entrypoint.sh"]
-
-CMD ["/usr/bin/rsync", "--daemon"]
 
 CMD sh
