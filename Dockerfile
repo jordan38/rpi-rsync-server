@@ -3,21 +3,20 @@ MAINTAINER Jordan Content
 
 RUN apk add --no-cache rsync
 
-COPY docker-entrypoint.sh /
-
 COPY rsyncd.conf /etc/rsyncd.conf
 
-RUN chmod +x /docker-entrypoint.sh
-
-RUN mkdir -p /rsync/backup/data
+RUN mkdir -p /rsync/backup/data \
+    mkdir -p /var/log/rsync && touch rsync.log
 
 RUN touch /etc/rsyncd.secrets \
     chmod 600 /etc/rsyncd.secrets
 
-RUN mkdir -p /var/log/rsync
-
 WORKDIR /var/log/rsync
 RUN touch rsync.log
+
+WORKDIR /
+COPY docker-entrypoint.sh /
+RUN chmod +x /docker-entrypoint.sh
 
 EXPOSE 873
 ENTRYPOINT ["/docker-entrypoint.sh"]
