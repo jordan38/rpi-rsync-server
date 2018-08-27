@@ -1,6 +1,7 @@
-FROM resin/armhf-alpine:latest
+FROM resin/armhf-alpine:3.7-20180718
 MAINTAINER Jordan Content
 
+# Define static version of package
 RUN apk add --no-cache rsync
 
 COPY rsyncd.conf /etc/rsyncd.conf
