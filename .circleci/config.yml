@@ -2,12 +2,22 @@ version: 2
 jobs:
   build:
     docker:
-    - image: debian:stretch
+    - image: ubuntu:18.10
     steps:
     - checkout
     - run:
-        name: Greeting
-        command: echo Hello, world.
+        name: Prepare QEMU
+        command: |
+          docker run --rm --privileged multiarch/qemu-user-static:register --reset
     - run:
-        name: Print the Current Time
-        command: date
+        name: Build application Docker image
+        command: |
+          docker build -t jordan38080/rpi-rsync-server .
+    - run:
+        name: Push application Docker image
+        command: |
+          if [ "${CIRCLE_BRANCH}" == "master" ]; then
+            docker login -u="$DOCKER_USER" -p="$DOCKER_PASSWORD"
+            docker tag jordan38080/rpi-rsync-server "$DOCKER_USER/rpi-rsync-server:${CIRCLE_SHA1}"
+            docker push "$DOCKER_USER/rpi-rsync-server:${CIRCLE_SHA1}"
+          fi
