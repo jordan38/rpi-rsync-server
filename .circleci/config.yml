@@ -18,6 +18,6 @@ jobs:
         command: |
           if [ "${CIRCLE_BRANCH}" == "master" ]; then
             docker login -u="$DOCKER_USER" -p="$DOCKER_PASSWORD"
-            docker tag jordan38080/rpi-rsync-server "$DOCKER_USER/rpi-rsync-server:${CIRCLE_SHA1}"
+            docker tag "$DOCKER_USER/rpi-rsync-server" "$DOCKER_USER/rpi-rsync-server:${CIRCLE_SHA1}"
             docker push "$DOCKER_USER/rpi-rsync-server:${CIRCLE_SHA1}"
           fi

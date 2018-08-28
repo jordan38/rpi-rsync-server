@@ -1,5 +1,7 @@
 # Rsync server for ARM based Raspberry PI
 
+[![CircleCI](https://circleci.com/gh/jordan38/rpi-rsync-server/tree/master.svg?style=svg)](https://circleci.com/gh/jordan38/rpi-rsync-server/tree/master)
+
 ## Running
      
     $ docker run --name=rsync-server \
@@ -22,6 +24,12 @@
     $ docker logs -f rsync-server
         
     $ rsync -rdt rsync://{RSYNC_SERVEUR_IP}:{RSYNC_PORT}/
+    
+## Where to find logging file ?
+
+    Inside the container you can find the log file for rsync in /var/log/rsync/rsync.log
+    
+    
     
 
 
