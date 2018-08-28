@@ -2,9 +2,10 @@ version: 2
 jobs:
   build:
     docker:
-    - image: ubuntu:18.10
+    - image: docker:18.06.1-ce
     steps:
     - checkout
+    - setup_remote_docker
     - run:
         name: Prepare QEMU
         command: |
@@ -12,12 +13,12 @@ jobs:
     - run:
         name: Build application Docker image
         command: |
-          docker build -t jordan38080/rpi-rsync-server .
+          docker build -t "${DOCKER_USER}/${CIRCLE_PROJECT_REPONAME}" .
     - run:
         name: Push application Docker image
         command: |
           if [ "${CIRCLE_BRANCH}" == "master" ]; then
-            docker login -u="$DOCKER_USER" -p="$DOCKER_PASSWORD"
-            docker tag "$DOCKER_USER/rpi-rsync-server" "$DOCKER_USER/rpi-rsync-server:${CIRCLE_SHA1}"
-            docker push "$DOCKER_USER/rpi-rsync-server:${CIRCLE_SHA1}"
+            docker login -u=${DOCKER_USER} -p=${DOCKER_PASSWORD}
+            docker tag "${DOCKER_USER}/${CIRCLE_PROJECT_REPONAME}" "${DOCKER_USER}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
+            docker push "${DOCKER_USER}/${CIRCLE_PROJECT_REPONAME}:${CIRCLE_SHA1}"
           fi
