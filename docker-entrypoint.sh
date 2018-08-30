@@ -1,9 +1,10 @@
 #!/bin/sh
 
-set -e
+DIR=/docker-entrypoint.d
 
-printf "$LOGIN:$PASSWORD" > /etc/rsyncd.secrets
+if [[ -d "$DIR" ]]
+then
+  /bin/run-parts "$DIR"
+fi
 
-ln -sf /dev/stdout /var/log/rsync/rsync.log
-
-rsync --no-detach --daemon
+exec "$@"
