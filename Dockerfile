@@ -5,6 +5,7 @@ MAINTAINER Jordan Content
 RUN apk add --no-cache rsync openssh
 
 COPY rsyncd.conf /etc/rsyncd.conf
+COPY sshd_config /etc/ssh/sshd_config
 
 WORKDIR /
 COPY docker-entrypoint.d/* /docker-entrypoint.d/

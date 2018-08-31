@@ -23,7 +23,9 @@
     
     $ docker logs -f rsync-server
         
-    $ rsync -rdt rsync://{RSYNC_SERVEUR_IP}:{RSYNC_PORT}/
+    $ rsync rsync://{RSYNC_SERVEUR_IP}:{RSYNC_PORT}/
+    
+    $ rsync -avP --no-perms --password-file=credential.secret /path/to/dir rsync://<docker>:<port>/<module_rsync>/
     
 ## Where to find logging file ?
 
