@@ -27,6 +27,8 @@
     
     $ rsync -avP --no-perms --password-file=credential.secret /path/to/dir rsync://<docker>:<port>/<module_rsync>/
     
+    $ rsync -avzP --no-perms --no-owner --no-group  /path/to/dir <LOGIN>@<RSYNC_SERVER>::<MODULE_RSYNC>
+    
 ## Where to find logging file ?
 
     Inside the container you can find the log file for rsync in /var/log/rsync/rsync.log
