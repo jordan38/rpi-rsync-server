@@ -1,8 +1,8 @@
-FROM resin/armhf-alpine:3.7-20180718
+FROM resin/rpi-raspbian:latest
 MAINTAINER Jordan Content
 
 # Define static version of package
-RUN apk add --no-cache rsync openssh
+RUN apt-get update && apt-get install -y rsync nano --no-install-recommends && rm -rf /var/lib/apt/lists/*
 
 COPY rsyncd.conf /etc/rsyncd.conf
 COPY sshd_config /etc/ssh/sshd_config

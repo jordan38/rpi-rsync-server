@@ -1,11 +1,10 @@
-#!/bin/sh
+#!/bin/bash
 
 DIR=/docker-entrypoint.d
 
 if [[ -d "$DIR" ]]
 then
-    sh $DIR/rsync.sh
-    sh $DIR/sshd.sh
+    run-parts $DIR
 fi
 
 exec "$@"

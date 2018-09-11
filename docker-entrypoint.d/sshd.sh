@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Example configure SSH on Alpine docker https://hub.docker.com/r/gotechnies/alpine-ssh/
 
